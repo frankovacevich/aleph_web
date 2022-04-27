@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>{{ APP_NAME }}</title>
+    <link rel="icon" type="image/png" href='{% static "" %}{{ APP_FAVICON }}'/>    
+</head>
+
+
+<style>
+
+:root{
+    --primary-color: {{ APP_PRIMARY_COLOR }};
+    --font-size: 14px;
+}
+
+body{ 
+    background-color: var(--primary-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top :0; bottom: 0; left: 0; right : 0;
+    font-family: Helvetica;
+    font-size: var(--font-size);
+}
+
+form{ 
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    display: flex; 
+    gap: 1rem;
+    flex-direction: column; 
+    width: 300px;
+    filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
+}
+
+input{
+    background-color: #DDDDDD;
+    padding: 1rem;
+    font-size: var(--font-size);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border: none;
+    border-radius: 0.125rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label{
+    display: block;
+    margin-bottom: -0.2rem;
+    font-size: var(--font-size);
+    font-weight: bold;
+}
+
+button{
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    padding: 1rem;
+    border-radius: 0.125rem;
+    font-size: var(--font-size);
+    cursor: pointer;
+}
+
+button:hover{ filter: brightness(1.2); }
+button:active{ filter: brightness(0.8) !important; }
+
+.logo{ width: 100px; height: 100px; margin: 10px auto; }
+
+@media screen and (max-width: 600px){
+    body{ background-color: white; }
+    form{ filter: none }
+}
+
+</style>
+
+
+<body>
+    <form method="post">
+        <img class="logo" src='{% static "img/logo.svg" %}'/>
+
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input name="username" />
+
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+
+        <button>Login</button>
+
+        <div style="margin: 0 auto">{{ msg }}</div>
+    </form>
+</body>
+</html>

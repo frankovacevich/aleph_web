@@ -1,0 +1,31 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Tableau Connector</title>
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <script src='{% static "base/tableauwdc.js" %}' type="text/javascript"></script>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+    (function () {
+    var myConnector = tableau.makeConnector();
+
+    myConnector.getSchema = function (schemaCallback) {
+
+    };
+
+    myConnector.getData = function (table, doneCallback) {
+
+    };
+
+    tableau.registerConnector(myConnector);
+})();
+</script>
+
+</html>
